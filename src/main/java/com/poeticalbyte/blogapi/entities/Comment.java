@@ -11,21 +11,22 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "comments")
 @Data
-public class Post {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 60)
-    private String headline;
-    
-    @Column(length = 5000)
+    @Column(length = 2000)
     private String content;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 }
